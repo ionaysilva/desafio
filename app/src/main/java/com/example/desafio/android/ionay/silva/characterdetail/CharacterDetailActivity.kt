@@ -10,7 +10,7 @@ import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class CharacterDetailActivity : AppCompatActivity() {
 
-    private val viewmodel: CharacterDetailViewModel by viewModel()
+    private val viewModel: CharacterDetailViewModel by viewModel()
     private lateinit var binding: ActivityDetailCharacterBinding
     private lateinit var result: Results
 
@@ -29,7 +29,7 @@ class CharacterDetailActivity : AppCompatActivity() {
         binding.characterDescription.text = result.description
 
         binding.goToComic.setOnClickListener {
-            viewmodel.openComicActivity(this, this.result.id)
+            viewModel.openComicActivity(this, this.result.id)
         }
     }
 

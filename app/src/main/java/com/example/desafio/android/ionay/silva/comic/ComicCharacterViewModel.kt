@@ -20,7 +20,6 @@ class ComicCharacterViewModel(private val marvelRepository: MarvelRepository) : 
                     comicsCharacter.data.results.maxByOrNull { comic -> comic.prices.get(0).price }
                 if (maxByOrNull != null) {
                     mComicCharactersData.value = maxByOrNull
-                    loadingLiveData.value = false
                 } else {
                     errorLiveData.value = true
                 }

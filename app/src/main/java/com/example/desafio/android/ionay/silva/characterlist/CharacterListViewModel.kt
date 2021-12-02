@@ -15,13 +15,13 @@ class CharacterListViewModel(private val marvelRepository: MarvelRepository, pri
     val mCharactersData: MutableLiveData<CharacterResponse> = MutableLiveData()
 
     fun getCharacters() {
+        loadingLiveData.value = true
         viewModelScope.launch {
             try {
                 mCharactersData.value = marvelRepository.getCharacters()
             } catch (e: Exception) {
                 errorLiveData.value = true
             }
-            loadingLiveData.value = false
         }
     }
 
