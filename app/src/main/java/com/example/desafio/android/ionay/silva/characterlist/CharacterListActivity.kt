@@ -5,7 +5,6 @@ import android.view.View
 import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.Observer
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
 import com.example.desafio.android.ionay.silva.R
 import com.example.desafio.android.ionay.silva.databinding.CharactherListBinding
 import com.google.android.material.snackbar.Snackbar
