@@ -35,7 +35,7 @@ class ComicCharacterActivity : AppCompatActivity() {
             showLoading()
         })
 
-        viewModel.mComicCharactersData.observe(this, Observer {
+        viewModel.comicCharactersData.observe(this, Observer {
             stopLoading()
             binding.progressCircular.visibility = View.GONE
             binding.characterComicPrice.text = it.prices.get(0).price.toString()

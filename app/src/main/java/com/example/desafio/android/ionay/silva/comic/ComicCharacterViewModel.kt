@@ -1,5 +1,6 @@
 package com.example.desafio.android.ionay.silva.comic
 
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.desafio.android.ionay.silva.base.BaseViewModel
@@ -9,22 +10,23 @@ import kotlinx.coroutines.launch
 
 class ComicCharacterViewModel(private val marvelRepository: MarvelRepository) : BaseViewModel() {
 
-    val mComicCharactersData: MutableLiveData<Comic> = MutableLiveData()
+    private val _comicCharactersData: MutableLiveData<Comic> = MutableLiveData()
+    val comicCharactersData: LiveData<Comic> get() = _comicCharactersData
 
     fun getComicsCharacter(id: Int) {
-        loadingLiveData.value = true
+        _loadingLiveData.value = true
         viewModelScope.launch {
             try {
                 val comicsCharacter = marvelRepository.getComicsCharacter(id)
                 val maxByOrNull =
                     comicsCharacter.data.results.maxByOrNull { comic -> comic.prices.get(0).price }
                 if (maxByOrNull != null) {
-                    mComicCharactersData.value = maxByOrNull
+                    _comicCharactersData.value = maxByOrNull
                 } else {
-                    errorLiveData.value = true
+                    _errorLiveData.value = true
                 }
             } catch (e: Exception) {
-                errorLiveData.value = true
+                _errorLiveData.value = true
             }
 
         }

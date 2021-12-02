@@ -35,7 +35,6 @@ class CharacterListActivity : AppCompatActivity() {
         viewModel.mCharactersData.observe(this, Observer {
             stopLoading()
             it.data.results.let {
-                it
                 binding.charactersRecyclerview.setHasFixedSize(true)
                 val characterListAdapter = CharacterListAdapter(
                     it,

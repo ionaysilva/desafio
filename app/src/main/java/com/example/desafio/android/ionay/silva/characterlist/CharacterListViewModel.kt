@@ -2,6 +2,7 @@ package com.example.desafio.android.ionay.silva.characterlist
 
 import Results
 import android.content.Context
+import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.viewModelScope
 import com.example.desafio.android.ionay.silva.base.BaseViewModel
@@ -12,15 +13,16 @@ import kotlinx.coroutines.launch
 
 class CharacterListViewModel(private val marvelRepository: MarvelRepository, private val characterNavigation: CharacterNavigation) : BaseViewModel() {
 
-    val mCharactersData: MutableLiveData<CharacterResponse> = MutableLiveData()
+    private val _charactersData: MutableLiveData<CharacterResponse> = MutableLiveData()
+    val mCharactersData: LiveData<CharacterResponse> get() = _charactersData
 
     fun getCharacters() {
-        loadingLiveData.value = true
+        _loadingLiveData.value = true
         viewModelScope.launch {
             try {
-                mCharactersData.value = marvelRepository.getCharacters()
+                _charactersData.value = marvelRepository.getCharacters()
             } catch (e: Exception) {
-                errorLiveData.value = true
+                _errorLiveData.value = true
             }
         }
     }
